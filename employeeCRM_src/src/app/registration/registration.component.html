@@ -1,0 +1,142 @@
+  
+    <div class="container h-100">
+        <div class="row h-100">
+            <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
+                <div class="d-table-cell align-middle">
+
+                    <div class="text-center mt-4">
+                        <h1 class="h2">Sign UP</h1>
+                        <p class="lead">
+                            
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="m-sm-4">
+                                <form  #registration="ngForm"  (ngSubmit)="registerUser(registration)" >
+                                    <span class="text-danger">{{message}}</span>
+
+                                    <div class="form-group">
+                                        <label for="email" >Email</label>
+
+                                        <input 
+                                        class="form-control form-control-lg" 
+                                        type="email" 
+                                        name="email" 
+                                        placeholder="Enter your email"
+                                        required
+                                        [(ngModel)]="user.email"
+                                        #email="ngModel"
+                                        pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+[A-Za-z]{1,63}$"
+                                        >
+
+                                        <div *ngIf="email.errors && (email.invalid && email.touched)">
+                                            <div  class="text-danger"  *ngIf="email.errors?.['required']">  Email is required field     </div>
+                                            <div  class="text-danger"  *ngIf="email.errors?.['pattern']">  Enter a valide email format    </div>
+
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+                                       
+                                        <label for="username" >username</label>
+
+                                        <input 
+                                        class="form-control form-control-lg" 
+                                        type="text" 
+                                        name="username" 
+                                        placeholder="Enter your username"
+                                        required
+                                        [(ngModel)]="user.username"
+                                        #username="ngModel"
+                                     
+                                       
+                                        >
+
+                                        <div *ngIf="username.errors && (username.invalid && username.touched)">
+                                            <div    class="text-danger"  *ngIf="username.errors?.['required']" > username is required field</div>
+                                          
+
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password" >password</label>
+
+                                        <input 
+                                        class="form-control form-control-lg" 
+                                        type="password" 
+                                        name="password" 
+                                        placeholder="Enter your password"
+                                        required
+                                        [(ngModel)]="user.password"
+                                        #password="ngModel"
+                                        minlength="4"
+                                        maxlength="10"
+                                        >
+                                       
+                            
+
+
+
+                                        <div *ngIf="password.errors && (password.invalid && password.touched)">
+                                            <div    class="text-danger"  *ngIf="password.errors?.['required']" > password is required field</div>
+                                            <div    class="text-danger"  *ngIf="password.errors?.['minlength']" > password minlength is 4 charecter</div>
+                                            <div    class="text-danger"  *ngIf="password.errors?.['maxlength']" > password maxlength is 10 charecter</div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cpassword" >C-password</label>
+
+                                        <input 
+                                        class="form-control form-control-lg" 
+                                        type="password" 
+                                        name="cpassword" 
+                                        placeholder="Enter your confirm password"
+                                        required
+                                         (ngModel)="user.password"
+                                        #cpassword="ngModel"
+                                        minlength="4"
+                                        maxlength="10"
+                                        >
+
+
+
+                                        
+                                        <div *ngIf="cpassword.errors && (cpassword.invalid && cpassword.touched)">
+                                            <div    class="text-danger"  *ngIf="cpassword.errors?.['required']" >  confirm password is required field</div>
+                                            <div    class="text-danger"  *ngIf="cpassword.errors?.['minlength']" > confirm minlength is 4 charecter</div>
+                                            <div    class="text-danger"  *ngIf="cpassword.errors?.['maxlength']" > confirm maxlength is 10 charecter</div>
+
+                                        </div>
+
+                                       
+                                        
+                                    </div>
+                                    <div class="text-center mt-3">
+                                        <button  [disabled]="registration.form.invalid"  class="btn btn-lg btn-primary"  type="submit" > Register </button>
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                         <button class="btn btn-lg btn-danger" [routerLink]="['/login']">login</button> 
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+ 

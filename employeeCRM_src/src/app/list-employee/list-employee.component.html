@@ -1,0 +1,84 @@
+
+
+
+
+
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+
+    <ul class="navbar-nav">
+        
+
+        <li class="nav-item"> <b> <a style="color: black;" routerLink="/add-employee" routerLinkActive="active"
+                    class="nav-link"> Add-employee</a></b></li>
+
+        <li class="nav-item"> <b> <a style="color: black;" routerLink="/dashboard" routerLinkActive="active"
+                    class="nav-link"> Dashboard</a></b></li> 
+
+                    <li class="nav-item"> <b> <a style="color: brown;" routerLink="/dashboard/logout" routerLinkActive="active"
+                       class="nav-link"> LogOut</a></b></li>
+
+    </ul>
+</nav>
+
+
+
+ 
+
+
+<div class="container">
+
+    <h1>Employee List</h1>
+
+    <h3><label for="search"> Search</label></h3>
+    <input 
+    type="text" 
+    class="form-control" 
+    placeholder="Search"
+    [(ngModel)]="searchKey"
+    
+    >
+
+    <table class="table">
+        <thead>
+
+
+            <tr>
+                <th (click)="sortEmployees('id')" >ID <i class="fa fa-sort" aria-hidden="true"></i>  - </th>
+                <!-- <th (click)="sortEmployees('firstName')"  >Profile Picture   </th> -->
+                <th (click)="sortEmployees('firstname')"  >First Name   </th>
+                <th (click)="sortEmployees('lastname')" >Last Name   </th>
+                <th (click)="sortEmployees('email')"  >Email  </th>
+                <th >Action</th>
+
+            </tr>
+        </thead>
+        <tbody>
+         
+            <tr *ngFor="let emp of employee  |  orderBy: key | paginate: {itemsPerPage : 4, currentPage: p} ">
+                <td>{{emp.id}}</td>
+                <td>{{emp.firstname}}</td>
+                <td>{{emp.lastname}}</td> 
+                <td>{{emp.email}}</td>
+               
+                <!-- You can use item.profilePicture here if it's a URL to an image -->
+                
+          
+          <td>
+             <button (click)="updateEmployee(emp.id)" class="btn btn-primary" >Edite</button>  -
+            <button (click)="deleteEmployee(emp.id)" class="btn btn-danger" >delete</button> -
+              <button (click)="detailEmployee(emp.id)" class="btn btn-info" >detail</button>  
+
+          </td> 
+        </tr> 
+
+        </tbody>
+
+
+  
+
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls> 
+</div>
+
+
+
